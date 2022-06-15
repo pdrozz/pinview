@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AppTheme">
+        <attr name="pinViewStyle" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="PinView">
+        <attr name="pinCount" format="integer" />
+        <attr name="isPassword" format="boolean" />
+        <attr name="pinPadding" format="dimension"/>
+        <attr name="pinBackground" format="reference"/>
+
+        <attr name="android:textSize" format="dimension"/>
+        <attr name="android:fontFamily" format="string|reference"/>
+        <attr name="android:textColor" format="reference|color"/>
+        <attr name="android:textStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>

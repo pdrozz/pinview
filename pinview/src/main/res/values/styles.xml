@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="pinViewStyle">@style/Widget.AppTheme.PinView</item>
+    </style>
+
+    <style name="Widget.AppTheme.PinView" parent="">
+        <item name="pinCount">4</item>
+        <item name="pinPadding">4dp</item>
+        <item name="isPassword">false</item>
+    </style>
+
+</resources>
