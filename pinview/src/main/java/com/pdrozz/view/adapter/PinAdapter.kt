@@ -17,6 +17,7 @@ class PinAdapter(
 
     private val UPDATE_BACKGROUND_PAYLOAD = "UPDATE_BACKGROUND_PAYLOAD"
     private val UPDATE_IS_ENABLED_PAYLOAD = "UPDATE_IS_ENABLED_PAYLOAD"
+    private val CLEAR_TEXT_PAYLOAD = "CLEAR_TEXT_PAYLOAD"
 
     init {
         submitList(List(pinParams.pinCount) { PinModel(index = it) })
@@ -39,8 +40,11 @@ class PinAdapter(
     ) {
         if (payloads.isNotEmpty()) {
             payloads.forEach {
-                if (it == UPDATE_BACKGROUND_PAYLOAD) holder.setBackground(pinParams.pinBackground)
-                else if (it == UPDATE_IS_ENABLED_PAYLOAD) holder.setIsEnabled(pinParams.isEnabled)
+                when (it) {
+                    UPDATE_BACKGROUND_PAYLOAD -> holder.setBackground(pinParams.pinBackground)
+                    UPDATE_IS_ENABLED_PAYLOAD -> holder.setIsEnabled(pinParams.isEnabled)
+                    CLEAR_TEXT_PAYLOAD -> holder.clearText()
+                }
             }
         } else {
             super.onBindViewHolder(holder, position, payloads)
@@ -73,6 +77,10 @@ class PinAdapter(
             stringBuilder.append(it.text ?: "")
         }
         return stringBuilder.toString()
+    }
+
+    fun clearText() {
+        notifyItemRangeChanged(0, currentList.size, CLEAR_TEXT_PAYLOAD)
     }
 
     companion object {

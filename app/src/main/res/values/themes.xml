@@ -15,7 +15,7 @@
         <item name="pinViewStyle">@style/pinStyle</item>
     </style>
 
-    <style name="pinStyle" parent="">
+    <style name="pinStyle" parent="Widget.AppTheme.PinView">
         <item name="pinCount">6</item>
         <item name="pinPadding">4dp</item>
         <item name="isPassword">false</item>

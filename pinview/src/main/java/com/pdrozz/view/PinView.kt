@@ -86,7 +86,7 @@ class PinView @JvmOverloads constructor(
     }
 
     fun clear() {
-        pinStateEmitter.tryEmit(PinState.Clear)
+        adapter?.clearText()
     }
 
     fun requestFocusToPin(pinIndex: Int = 0){

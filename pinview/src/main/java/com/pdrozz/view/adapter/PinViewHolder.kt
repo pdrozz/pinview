@@ -32,7 +32,7 @@ class PinViewHolder(
             pinStateFlow.collectLatest {
                 when (it) {
                     is PinState.RequestFocus -> onFocusRequested(it.index)
-                    is PinState.Clear -> clear()
+                    is PinState.Clear -> clearText()
                     is PinState.SetText -> setText(it.text)
                     else -> {}
                 }
@@ -54,7 +54,7 @@ class PinViewHolder(
         emitOnTextChanged.set(true)
     }
 
-    private fun clear() {
+    fun clearText() {
         emitOnTextChanged.set(false)
         itemBinding.editPin.text.clear()
         emitOnTextChanged.set(true)
