@@ -123,13 +123,11 @@ class PinViewHolder(
     }
 
     fun setTextColor(textColor: Int?) {
-        if (textColor != null && textColor != 0)
-            itemBinding.editPin.setTextColor(textColor)
+        if (textColor != null && textColor != 0) itemBinding.editPin.setTextColor(textColor)
     }
 
     fun setBackground(pinBackground: Int?) {
-        if (pinBackground != null)
-            itemBinding.editPin.setBackgroundResource(pinBackground)
+        if (pinBackground != null) itemBinding.editPin.setBackgroundResource(pinBackground)
     }
 
     fun setIsEnabled(isEnabled: Boolean) {
@@ -140,4 +138,7 @@ class PinViewHolder(
         if (pinColor != null) itemBinding.editPin.setColorFilter(pinColor)
     }
 
+    fun clearPinColor() {
+        itemBinding.editPin.background?.clearColorFilter()
+    }
 }

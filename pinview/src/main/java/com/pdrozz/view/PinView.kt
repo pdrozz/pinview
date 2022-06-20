@@ -106,6 +106,10 @@ class PinView @JvmOverloads constructor(
         adapter?.setPinColor(color)
     }
 
+    fun clearPinColor() {
+        adapter?.clearPinColor()
+    }
+
     private fun addPinStateObserver() {
         CoroutineScope(viewScope).launch {
             pinStateEmitter.collectLatest {

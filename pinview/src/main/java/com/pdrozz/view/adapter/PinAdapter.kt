@@ -19,6 +19,7 @@ class PinAdapter(
     private val UPDATE_BACKGROUND_PAYLOAD = "UPDATE_BACKGROUND_PAYLOAD"
     private val UPDATE_IS_ENABLED_PAYLOAD = "UPDATE_IS_ENABLED_PAYLOAD"
     private val UPDATE_PIN_COLOR_PAYLOAD = "UPDATE_PIN_COLOR_PAYLOAD"
+    private val CLEAR_PIN_COLOR_PAYLOAD = "CLEAR_PIN_COLOR_PAYLOAD"
     private val CLEAR_TEXT_PAYLOAD = "CLEAR_TEXT_PAYLOAD"
 
     init {
@@ -46,6 +47,7 @@ class PinAdapter(
                     UPDATE_BACKGROUND_PAYLOAD -> holder.setBackground(pinParams.pinBackground)
                     UPDATE_IS_ENABLED_PAYLOAD -> holder.setIsEnabled(pinParams.isEnabled)
                     UPDATE_PIN_COLOR_PAYLOAD -> holder.setPinColor(pinParams.pinColor)
+                    CLEAR_PIN_COLOR_PAYLOAD -> holder.clearPinColor()
                     CLEAR_TEXT_PAYLOAD -> holder.clearText()
                 }
             }
@@ -89,6 +91,10 @@ class PinAdapter(
     fun setPinColor(@ColorRes color: Int) {
         pinParams.pinColor = color
         notifyItemRangeChanged(0, currentList.size, UPDATE_PIN_COLOR_PAYLOAD)
+    }
+
+    fun clearPinColor() {
+        notifyItemRangeChanged(0, currentList.size, CLEAR_PIN_COLOR_PAYLOAD)
     }
 
     companion object {
