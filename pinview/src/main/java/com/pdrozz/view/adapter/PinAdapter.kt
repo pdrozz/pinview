@@ -2,6 +2,7 @@ package com.pdrozz.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.pdrozz.view.model.PinModel
@@ -17,6 +18,7 @@ class PinAdapter(
 
     private val UPDATE_BACKGROUND_PAYLOAD = "UPDATE_BACKGROUND_PAYLOAD"
     private val UPDATE_IS_ENABLED_PAYLOAD = "UPDATE_IS_ENABLED_PAYLOAD"
+    private val UPDATE_PIN_COLOR_PAYLOAD = "UPDATE_PIN_COLOR_PAYLOAD"
     private val CLEAR_TEXT_PAYLOAD = "CLEAR_TEXT_PAYLOAD"
 
     init {
@@ -43,6 +45,7 @@ class PinAdapter(
                 when (it) {
                     UPDATE_BACKGROUND_PAYLOAD -> holder.setBackground(pinParams.pinBackground)
                     UPDATE_IS_ENABLED_PAYLOAD -> holder.setIsEnabled(pinParams.isEnabled)
+                    UPDATE_PIN_COLOR_PAYLOAD -> holder.setPinColor(pinParams.pinColor)
                     CLEAR_TEXT_PAYLOAD -> holder.clearText()
                 }
             }
@@ -81,6 +84,11 @@ class PinAdapter(
 
     fun clearText() {
         notifyItemRangeChanged(0, currentList.size, CLEAR_TEXT_PAYLOAD)
+    }
+
+    fun setPinColor(@ColorRes color: Int) {
+        pinParams.pinColor = color
+        notifyItemRangeChanged(0, currentList.size, UPDATE_PIN_COLOR_PAYLOAD)
     }
 
     companion object {

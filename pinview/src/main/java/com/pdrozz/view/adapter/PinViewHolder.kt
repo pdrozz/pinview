@@ -5,11 +5,13 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.KeyEvent
+import androidx.annotation.ColorRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.pdrozz.view.model.PinModel
-import com.pdrozz.view.state.PinState
 import com.pdrozz.view.databinding.PinItemBinding
+import com.pdrozz.view.model.PinModel
+import com.pdrozz.view.setColorFilter
+import com.pdrozz.view.state.PinState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -132,6 +134,10 @@ class PinViewHolder(
 
     fun setIsEnabled(isEnabled: Boolean) {
         itemBinding.editPin.isEnabled = isEnabled
+    }
+
+    fun setPinColor(@ColorRes pinColor: Int?) {
+        if (pinColor != null) itemBinding.editPin.setColorFilter(pinColor)
     }
 
 }

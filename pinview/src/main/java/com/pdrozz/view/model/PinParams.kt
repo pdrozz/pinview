@@ -9,5 +9,6 @@ data class PinParams(
     var textColor: Int? = null,
     var textStyle: Int? = null,
     var fontFamilyID: Int? = null,
-    var isEnabled: Boolean = false
+    var isEnabled: Boolean = false,
+    var pinColor: Int? = null
 )

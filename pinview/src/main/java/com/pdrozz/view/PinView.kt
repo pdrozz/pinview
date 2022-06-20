@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pdrozz.view.adapter.PinAdapter
 import com.pdrozz.view.adapter.SpaceItemDecoration
@@ -89,16 +90,20 @@ class PinView @JvmOverloads constructor(
         adapter?.clearText()
     }
 
-    fun requestFocusToPin(pinIndex: Int = 0){
+    fun requestFocusToPin(pinIndex: Int = 0) {
         pinStateEmitter.tryEmit(PinState.RequestFocus(index = pinIndex))
     }
 
-    fun setPinBackground(pinBackground: Int){
+    fun setPinBackground(pinBackground: Int) {
         adapter?.setPinBackground(pinBackground)
     }
 
     fun setIsEnabled(isEnabled: Boolean) {
         adapter?.setIsEnabled(isEnabled)
+    }
+
+    fun setPinColor(@ColorRes color: Int) {
+        adapter?.setPinColor(color)
     }
 
     private fun addPinStateObserver() {

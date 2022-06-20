@@ -2,4 +2,5 @@
 <resources>
     <color name="focused_color">#EBA800</color>
     <color name="gray_pin">#8E8E93</color>
+    <color name="red">#FF0000</color>
 </resources>
