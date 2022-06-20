@@ -60,7 +60,7 @@ pinView.onTextChangedListener = { text ->
 }
 ```
 
-### Step 2:
+### Step 2 (Optional):
 
 Specifies `pinViewStyle` in your theme,
 
