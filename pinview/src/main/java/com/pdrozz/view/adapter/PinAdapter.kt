@@ -21,6 +21,7 @@ class PinAdapter(
     private val UPDATE_PIN_COLOR_PAYLOAD = "UPDATE_PIN_COLOR_PAYLOAD"
     private val CLEAR_PIN_COLOR_PAYLOAD = "CLEAR_PIN_COLOR_PAYLOAD"
     private val CLEAR_TEXT_PAYLOAD = "CLEAR_TEXT_PAYLOAD"
+    private val UPDATE_TEXT_VISIBILITY_PAYLOAD = "UPDATE_VISIBILITY_PAYLOAD"
 
     init {
         submitList(List(pinParams.pinCount) { PinModel(index = it) })
@@ -49,6 +50,7 @@ class PinAdapter(
                     UPDATE_PIN_COLOR_PAYLOAD -> holder.setPinColor(pinParams.pinColor)
                     CLEAR_PIN_COLOR_PAYLOAD -> holder.clearPinColor()
                     CLEAR_TEXT_PAYLOAD -> holder.clearText()
+                    UPDATE_TEXT_VISIBILITY_PAYLOAD -> holder.setIsPassword(pinParams.isPassword)
                 }
             }
         } else {
@@ -96,6 +98,13 @@ class PinAdapter(
     fun clearPinColor() {
         notifyItemRangeChanged(0, currentList.size, CLEAR_PIN_COLOR_PAYLOAD)
     }
+
+    fun setTextVisible(isVisible: Boolean){
+        pinParams.isPassword = !isVisible
+        notifyItemRangeChanged(0, currentList.size, UPDATE_TEXT_VISIBILITY_PAYLOAD)
+    }
+
+    fun isTextVisible() = !pinParams.isPassword
 
     companion object {
         private val PIN_DIFF_UTIL = object : DiffUtil.ItemCallback<PinModel>() {

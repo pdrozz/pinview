@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 class PinViewHolder(
     private val itemBinding: PinItemBinding,
     private val pinStateFlow: MutableSharedFlow<PinState>
-) : RecyclerView.ViewHolder(itemBinding.root) {
+): RecyclerView.ViewHolder(itemBinding.root) {
 
     private var pinModel: PinModel? = null
     private var emitOnTextChanged = AtomicBoolean(true)
@@ -63,7 +63,7 @@ class PinViewHolder(
     }
 
     private fun setupOnTextChanged() {
-        itemBinding.editPin.addTextChangedListener(object : TextWatcher {
+        itemBinding.editPin.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -91,15 +91,26 @@ class PinViewHolder(
     }
 
     private fun onFocusRequested(indexToFocus: Int) {
-        if (indexToFocus == adapterPosition) itemBinding.editPin.requestFocus()
+        if (indexToFocus == adapterPosition)
+            with(itemBinding.editPin) {
+                requestFocus()
+                setSelection(length())
+            }
     }
 
     fun setIsPassword(password: Boolean) {
-        if (password) {
-            itemBinding.editPin.inputType =
+        with(itemBinding.editPin) {
+            emitOnTextChanged.set(false)
+            val typeface = typeface
+
+            inputType = if (password)
                 InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
-        } else {
-            itemBinding.editPin.inputType = InputType.TYPE_CLASS_NUMBER
+            else
+                InputType.TYPE_CLASS_NUMBER
+
+            setTypeface(typeface)
+            setSelection(length())
+            emitOnTextChanged.set(true)
         }
     }
 

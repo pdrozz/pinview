@@ -110,6 +110,12 @@ class PinView @JvmOverloads constructor(
         adapter?.clearPinColor()
     }
 
+    fun isTextVisible() = adapter?.isTextVisible() == true
+
+    fun setTextVisible(isVisible: Boolean) {
+        adapter?.setTextVisible(isVisible)
+    }
+
     private fun addPinStateObserver() {
         CoroutineScope(viewScope).launch {
             pinStateEmitter.collectLatest {
